@@ -1,5 +1,6 @@
 package com.moviesquotesjprtechnosofttroughfirebase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,8 @@ import java.util.List;
 
 import Adapter.MoviesQuotesListAdapter;
 import model.MoviesQuotes;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class DashBoardMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,13 +46,13 @@ public class DashBoardMainActivity extends AppCompatActivity implements Navigati
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+      /*  NavigationView navigationView = findViewById(R.id.nav_view);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
     }
 
     @Override
@@ -81,8 +84,8 @@ public class DashBoardMainActivity extends AppCompatActivity implements Navigati
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+     @Override
+   public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -116,7 +119,7 @@ public class DashBoardMainActivity extends AppCompatActivity implements Navigati
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-       // recyclerView.setAdapter(moviesQuotesListAdapter);
+        // recyclerView.setAdapter(moviesQuotesListAdapter);
         recyclerView.setAdapter(moviesQuotesListAdapter);
 
 
@@ -128,8 +131,18 @@ public class DashBoardMainActivity extends AppCompatActivity implements Navigati
         }
 
 
+        moviesQuotesListAdapter.setmoviesQuotesListInterface(new MoviesQuotesListAdapter.MoviesQuotesListInterface() {
+            @Override
+            public void moviesQuotesListItem(int position) {
+                Intent i = new Intent(DashBoardMainActivity.this,SharedDataActivity.class);
+                i.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("Text", moviesQuotesList.get(position).getQuoteTxt());
+                i.putExtra("Writtername", moviesQuotesList.get(position).getWriterName());
 
+                startActivity(i);
 
+            }
+        });
 
     }
 }

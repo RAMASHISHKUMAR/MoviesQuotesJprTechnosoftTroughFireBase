@@ -1,7 +1,9 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.moviesquotesjprtechnosofttroughfirebase.DashBoardMainActivity;
 import com.moviesquotesjprtechnosofttroughfirebase.R;
+import com.moviesquotesjprtechnosofttroughfirebase.SharedDataActivity;
 
 import java.util.List;
 
@@ -21,16 +25,18 @@ public class MoviesQuotesListAdapter extends RecyclerView.Adapter<MoviesQuotesLi
 
     private Context context;
     private List<MoviesQuotes>moviesQuotesList;
+    private MoviesQuotesListInterface moviesQuotesListInterface;///
+
 
     public MoviesQuotesListAdapter(Context context, List<MoviesQuotes>moviesQuotesList1){
         this.context = context;
         this.moviesQuotesList = moviesQuotesList1;
     }
 
-    public MoviesQuotesListAdapter(List<MoviesQuotes> moviesQuotesList) {
+  /*  public MoviesQuotesListAdapter(List<MoviesQuotes> moviesQuotesList) {
         this.moviesQuotesList=moviesQuotesList;
 
-    }
+    } */
 
     @NonNull
     @Override
@@ -42,15 +48,38 @@ public class MoviesQuotesListAdapter extends RecyclerView.Adapter<MoviesQuotesLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
 
-         MoviesQuotes moviesQuotes =moviesQuotesList.get(i);
+         final MoviesQuotes moviesQuotes =moviesQuotesList.get(position);
 
          myViewHolder.quoteTxt.setText(moviesQuotes.getQuoteTxt());
          myViewHolder.writerName.setText(moviesQuotes.getWriterName());
 
 
+         myViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 if (moviesQuotesListInterface != null) {
+                     moviesQuotesListInterface.moviesQuotesListItem(myViewHolder.getAdapterPosition());
+                     //moviesQuotesListInterface.moviesQuotesListItem(moviesQuotesList.get(i).getWriterName());
+                 }
+
+
+             }
+         });
+
+
+
+
     }
+    public void setmoviesQuotesListInterface(MoviesQuotesListInterface moviesQuotesListInterface) {    ///
+        this.moviesQuotesListInterface = moviesQuotesListInterface;                                 ///
+    }
+    public interface MoviesQuotesListInterface {       ///
+        public void moviesQuotesListItem(int position);
+
+    }
+
 
     @Override
     public int getItemCount() {
@@ -71,6 +100,7 @@ public class MoviesQuotesListAdapter extends RecyclerView.Adapter<MoviesQuotesLi
         //private RelativeLayout expandedView;
         private ProgressBar imageLoader;
         private View lineView;
+        private CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +114,7 @@ public class MoviesQuotesListAdapter extends RecyclerView.Adapter<MoviesQuotesLi
            // expandedView = itemView.findViewById(R.id.expandedView);
             writerName = itemView.findViewById(R.id.writerName);
             profile_image=itemView.findViewById(R.id.profile_image);
+            cardView = itemView.findViewById(R.id.cardview);
 
         }
     }

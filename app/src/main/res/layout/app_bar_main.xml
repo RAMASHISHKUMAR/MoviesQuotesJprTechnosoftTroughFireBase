@@ -24,7 +24,7 @@
 
     <include layout="@layout/content_main" />
 
-    <!-- <RelativeLayout
+    <RelativeLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,6 +35,6 @@
             android:layout_alignParentBottom="true"
             android:background="?attr/colorPrimary">
         </android.support.design.widget.TabLayout>
-    </RelativeLayout> -->
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
