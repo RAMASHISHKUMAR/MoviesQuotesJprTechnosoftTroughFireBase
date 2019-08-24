@@ -27,7 +27,7 @@ public class MoviesQuotesListAdapter extends RecyclerView.Adapter<MoviesQuotesLi
     private List<MoviesQuotes>moviesQuotesList;
     private MoviesQuotesListInterface moviesQuotesListInterface;///
 
-
+    //Constructor
     public MoviesQuotesListAdapter(Context context, List<MoviesQuotes>moviesQuotesList1){
         this.context = context;
         this.moviesQuotesList = moviesQuotesList1;

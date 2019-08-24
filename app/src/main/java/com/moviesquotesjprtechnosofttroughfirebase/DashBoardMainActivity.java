@@ -78,7 +78,11 @@ public class DashBoardMainActivity extends AppCompatActivity implements Navigati
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        }
+        }else if(id == R.id.action_icon)
+        {
+            Intent intent=new Intent(DashBoardMainActivity.this,ProfileActivity.class);
+            startActivity(intent);
+            return true;}
 
         return super.onOptionsItemSelected(item);
     }
@@ -125,12 +129,12 @@ public class DashBoardMainActivity extends AppCompatActivity implements Navigati
 
         for (int i =0 ; i<100; i++){
             MoviesQuotes moviesQuotes = new  MoviesQuotes();
-            moviesQuotes.setQuoteTxt("This is dummy Quetes This is dummy Quetes This is dummy Quetes This is dummy QuetesThis is dummy Quetes"+i);
+            moviesQuotes.setQuoteTxt("\"The problem is not the the problem. The problem is your attitude about the problem\"");
             moviesQuotes.setWriterName(" -- Raj kumar"+i);
             moviesQuotesList.add(moviesQuotes);
         }
 
-
+        //clickListner
         moviesQuotesListAdapter.setmoviesQuotesListInterface(new MoviesQuotesListAdapter.MoviesQuotesListInterface() {
             @Override
             public void moviesQuotesListItem(int position) {

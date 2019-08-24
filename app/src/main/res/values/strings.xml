@@ -25,7 +25,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="problem">""The problem is not the the problem. The problem is your attitude about the problem" "</string>
+    <string name="problem">\"The problem is not the the problem. The problem is your attitude about the problem\"</string>
     <string name="jack"> -- Jack Sparrow</string>
     <string name="Pirates">Pirates of the Caribbean</string>
 
